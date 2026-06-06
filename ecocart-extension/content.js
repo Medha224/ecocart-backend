@@ -9,9 +9,19 @@ function isContextValid() {
   }
 }
 
+// Helper to check if the current site is a supported e-commerce site
+function isEcommerceSite() {
+  try {
+    const host = window.location.hostname.toLowerCase();
+    return host.includes("amazon.") || host.includes("ebay.") || host.includes("walmart.");
+  } catch (e) {
+    return false;
+  }
+}
+
 // Inject global styles for the widget and badge
 try {
-  if (isContextValid()) {
+  if (isContextValid() && isEcommerceSite()) {
     const style = document.createElement("style");
     style.textContent = `
       @keyframes ecocart-pulse {
@@ -548,32 +558,34 @@ function showNotificationCard(score) {
 
 // Watch for SPA URL changes
 try {
-  let lastUrl = location.href;
-  new MutationObserver(() => {
-    try {
-      if (!isContextValid()) return; // Exit observer loop if context is dead
-      const url = location.href;
-      if (url !== lastUrl) {
-        lastUrl = url;
-        const oldWidget = document.querySelector(".ecocart-inline-widget");
-        if (oldWidget) oldWidget.remove();
-        const oldBadge = document.querySelector("#ecocart-badge");
-        if (oldBadge) oldBadge.remove();
-        const oldCard = document.querySelector("#ecocart-card");
-        if (oldCard) oldCard.remove();
-        setTimeout(analyzeProduct, 1000);
+  if (isEcommerceSite()) {
+    let lastUrl = location.href;
+    new MutationObserver(() => {
+      try {
+        if (!isContextValid()) return; // Exit observer loop if context is dead
+        const url = location.href;
+        if (url !== lastUrl) {
+          lastUrl = url;
+          const oldWidget = document.querySelector(".ecocart-inline-widget");
+          if (oldWidget) oldWidget.remove();
+          const oldBadge = document.querySelector("#ecocart-badge");
+          if (oldBadge) oldBadge.remove();
+          const oldCard = document.querySelector("#ecocart-card");
+          if (oldCard) oldCard.remove();
+          setTimeout(analyzeProduct, 1000);
+        }
+      } catch (obsErr) {
+        console.error("EcoCart: Observer cycle error", obsErr);
       }
-    } catch (obsErr) {
-      console.error("EcoCart: Observer cycle error", obsErr);
-    }
-  }).observe(document, {subtree: true, childList: true});
+    }).observe(document, {subtree: true, childList: true});
+  }
 } catch (e) {
   console.error("EcoCart: MutationObserver setup failed", e);
 }
 
 // Initial run
 try {
-  if (isContextValid()) {
+  if (isContextValid() && isEcommerceSite()) {
     analyzeProduct();
   }
 } catch (e) {

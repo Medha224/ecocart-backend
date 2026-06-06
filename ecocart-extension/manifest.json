@@ -20,7 +20,25 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.ca/*",
+        "*://*.amazon.com.au/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.it/*",
+        "*://*.amazon.es/*",
+        "*://*.amazon.co.jp/*",
+        "*://*.amazon.com.mx/*",
+        "*://*.amazon.com.br/*",
+        "*://*.ebay.com/*",
+        "*://*.ebay.co.uk/*",
+        "*://*.ebay.ca/*",
+        "*://*.ebay.com.au/*",
+        "*://*.walmart.com/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
