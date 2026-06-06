@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const { name, brand, description } = message.data || {};
       
       chrome.storage.local.get("backendUrl", (storageData) => {
-        const backendUrl = storageData.backendUrl || "http://localhost:3000";
+        const backendUrl = storageData.backendUrl || "https://ecocart-backend-mgo6.onrender.com";
         const cleanUrl = backendUrl.endsWith('/') ? backendUrl.slice(0, -1) : backendUrl;
 
         fetch(`${cleanUrl}/api/analyze`, {

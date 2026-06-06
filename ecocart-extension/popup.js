@@ -26,9 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveSettingsBtn = document.getElementById("save-settings-btn");
   const settingsStatus = document.getElementById("settings-status");
 
-  // Load saved backend URL
+  // Load saved backend URL (and auto-migrate localhost to the live server URL)
   chrome.storage.local.get("backendUrl", (data) => {
-    backendUrlInput.value = data.backendUrl || "http://localhost:3000";
+    if (!data.backendUrl || data.backendUrl.includes("localhost:3000")) {
+      chrome.storage.local.set({ backendUrl: "https://ecocart-backend-mgo6.onrender.com" });
+      backendUrlInput.value = "https://ecocart-backend-mgo6.onrender.com";
+    } else {
+      backendUrlInput.value = data.backendUrl;
+    }
   });
 
   // Toggle panel visibility
