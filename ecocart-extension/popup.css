@@ -396,3 +396,98 @@ footer {
     transform: translateY(0);
   }
 }
+
+/* Settings Styles */
+.settings-section {
+  margin-top: 14px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 0;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+
+.settings-btn:hover {
+  color: var(--text-dark);
+}
+
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.settings-panel label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.settings-panel .input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-panel input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  font-size: 11.5px;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s ease;
+}
+
+.settings-panel input:focus {
+  border-color: var(--primary-green);
+}
+
+.settings-panel button {
+  background: var(--eco-gradient);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.2s ease;
+}
+
+.settings-panel button:hover {
+  opacity: 0.92;
+}
+
+.settings-status {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--primary-green-dark);
+  margin-top: 2px;
+  min-height: 14px;
+}
+

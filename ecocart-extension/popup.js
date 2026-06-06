@@ -18,6 +18,44 @@ document.addEventListener("DOMContentLoaded", () => {
       dashboardState.classList.add("hidden");
     }
   });
+
+  // Settings Panel Logic
+  const settingsToggle = document.getElementById("settings-toggle");
+  const settingsPanel = document.getElementById("settings-panel");
+  const backendUrlInput = document.getElementById("backend-url-input");
+  const saveSettingsBtn = document.getElementById("save-settings-btn");
+  const settingsStatus = document.getElementById("settings-status");
+
+  // Load saved backend URL
+  chrome.storage.local.get("backendUrl", (data) => {
+    backendUrlInput.value = data.backendUrl || "http://localhost:3000";
+  });
+
+  // Toggle panel visibility
+  settingsToggle.addEventListener("click", () => {
+    settingsPanel.classList.toggle("hidden");
+  });
+
+  // Save settings
+  saveSettingsBtn.addEventListener("click", () => {
+    let url = backendUrlInput.value.trim();
+    if (!url) {
+      url = "http://localhost:3000";
+    }
+    
+    // Normalize URL
+    if (!/^https?:\/\//i.test(url)) {
+      url = "http://" + url;
+    }
+
+    chrome.storage.local.set({ backendUrl: url }, () => {
+      settingsStatus.textContent = "URL Saved Successfully! 🌿";
+      settingsStatus.style.color = "var(--primary-green-dark)";
+      setTimeout(() => {
+        settingsStatus.textContent = "";
+      }, 2500);
+    });
+  });
 });
 
 function populateDashboard(product) {
