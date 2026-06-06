@@ -6,7 +6,7 @@ The project is structured as a monorepo containing both the Express.js analysis 
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 * **Real-time DOM Injection**: Displays a green-themed inline analysis widget and floating badge directly under the product title on supported e-commerce sites.
 * **Intelligent Scoring Engine**: Uses category-specific default baselines (Electronics, Clothing, Groceries, etc.), material sustainability adjustments ($\pm40$), eco-certification bonuses ($+30$), and packaging adjustments ($\pm20$).
