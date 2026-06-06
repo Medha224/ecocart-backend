@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoCart Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo-area">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">EcoCart</span>
+      </div>
+      <div class="badge-status">Live Analytics</div>
+    </header>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="empty-state">
+      <div class="empty-icon">🛒</div>
+      <h2>No Product Detected</h2>
+      <p>Visit an e-commerce page (like Amazon, eBay, or Walmart) and view a product details page to analyze its eco-friendliness score.</p>
+    </div>
+
+    <!-- Dashboard State -->
+    <div id="dashboard-state" class="dashboard-state hidden">
+      <div class="product-info-card">
+        <div class="category-badge" id="product-category">Clothing & Textiles</div>
+        <h1 id="product-title">Organic Cotton T-Shirt</h1>
+        <div class="brand-row">
+          <span>Brand:</span>
+          <strong id="product-brand">Patagonia</strong>
+        </div>
+      </div>
+
+      <div class="score-visualization">
+        <div class="circle-container">
+          <svg class="progress-ring" width="120" height="120">
+            <circle class="progress-ring__background" cx="60" cy="60" r="50"></circle>
+            <circle class="progress-ring__circle" cx="60" cy="60" r="50" id="progress-circle"></circle>
+          </svg>
+          <div class="score-display">
+            <span id="score-number">95</span>
+            <span class="score-label">Eco Score</span>
+          </div>
+        </div>
+        
+        <div class="tip-card" id="score-tip-container">
+          <div class="tip-title">🌿 Analysis Summary</div>
+          <p id="score-tip">Excellent eco-friendly choice! This product is made of highly sustainable materials.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Score Breakdown</div>
+      <div class="breakdown-container">
+        <!-- Brand Reputation -->
+        <div class="breakdown-item">
+          <div class="breakdown-header">
+            <span>Brand Sustainability (30%)</span>
+            <span id="score-brand-val">95/100</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="bar-brand" style="width: 95%;"></div>
+          </div>
+        </div>
+
+        <!-- Materials -->
+        <div class="breakdown-item">
+          <div class="breakdown-header">
+            <span>Sustainable Materials (40%)</span>
+            <span id="score-materials-val">+15 pts</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="bar-materials" style="width: 50%;"></div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="breakdown-item">
+          <div class="breakdown-header">
+            <span>Eco-Certifications (20%)</span>
+            <span id="score-certs-val">+0 pts</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="bar-certs" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Packaging -->
+        <div class="breakdown-item">
+          <div class="breakdown-header">
+            <span>Packaging & Disposability (10%)</span>
+            <span id="score-pkg-val">+0 pts</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="bar-pkg" style="width: 50%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detected-keywords-section" id="keywords-section">
+        <div class="section-title">Detected Indicators</div>
+        <div class="tags-wrapper" id="detected-tags">
+          <!-- Tags injected here -->
+        </div>
+      </div>
+
+      <div class="alternatives-section" id="alternatives-section">
+        <div class="section-title">Greener Alternatives</div>
+        <div class="alternatives-list" id="alternatives-list">
+          <!-- Alternatives injected here -->
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>EcoCart v1.0.0 &bull; Shop Sustainably</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
